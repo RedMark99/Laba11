@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Должности с максимальными и минимальными окладами (измененный)</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">@Html.Label("Фамилия")</th>
+            <th scope="col">@Html.Label("Имя")</th>
+            <th scope="col">@Html.Label("Отчество")</th>
+            <th scope="col">@Html.Label("Должность")</th>
+            <th scope="col"> @Html.Label("Оклад")</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.Alisa)
+        {
+            <tr>
+                <td>@item.surname</td>
+                <td>@item.name</td>
+                <td>@item.lastname</td>
+                <td>@item.Profession</td>
+                <td>@item.Salary</td>
+            </tr>
+        }
+    </tbody>
+</table>

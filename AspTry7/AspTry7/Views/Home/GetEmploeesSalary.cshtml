@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h3>Все занимаемые должности сотрудника на текущий момент с окладом (Базовый оклад * Размер ставки) и датой принятия на эту должность.</h3>
+    <table>
+        <tr>
+            <th scope="col">@Html.Label("Фамилия")&nbsp;</th>
+            <th scope="col">@Html.Label("Суммарный оклад")&nbsp;</th>
+            <th scope="col">@Html.Label("Премия")&nbsp;</th>
+            <th scope="col">@Html.Label("НДФЛ")&nbsp;</th>
+            <th scope="col">@Html.Label("К выдачи")&nbsp;</th>
+        </tr>
+
+        @foreach (var Mark in ViewBag.Salary)
+        {
+            <tr>
+                <td><p>@Mark.Surname</p></td>
+                <td><p>@Mark.Salary</p></td>
+                <td><p>@Mark.Premia</p></td>
+                <td><p>@Mark.NDFL</p></td>
+                <td><p>@Mark.toHand</p></td>
+            </tr>
+        }
+
+    </table>
+</div>

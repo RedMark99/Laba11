@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h3> список сотрудников, принятых в выбранный интервал времени </h3>
+    <table>
+        <tr>
+            <th scope="col">@Html.Label("Фамилия")&nbsp;</th>
+            <th scope="col">@Html.Label("Имя")&nbsp;</th>
+            <th scope="col">@Html.Label("Отчество")&nbsp;</th>
+        </tr>
+        @foreach (var Alisa in ViewBag.EmplDate)
+        {
+            <tr>
+                <td><p>@Alisa.Surname&nbsp;</p></td>
+                <td><p>@Alisa.Name&nbsp;</p></td>
+                <td><p>@Alisa.Patranomyc&nbsp;</p></td>
+            </tr>
+        }
+
+    </table>
+</div>

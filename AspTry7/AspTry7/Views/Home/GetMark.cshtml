@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h3>Формирование сведений о движении сотрудника в хронологическом порядке</h3>
+    <table>
+        <tr>
+            <th scope="col">@Html.Label("Должность")&nbsp;</th>
+            <th scope="col">@Html.Label("Дата принятия")&nbsp;</th>
+            <th scope="col">@Html.Label("Дата увольнения")&nbsp;</th>
+            <th scope="col">@Html.Label("Причина увольнения")&nbsp;</th>
+        </tr>
+            @foreach (var alisa in ViewBag.Mark)
+            {
+                <tr>
+                    <td><p>@alisa.NamePost&nbsp;</p></td>
+
+                    @if (alisa.dateTake.ToShortDateString().ToString() != null)
+                    {
+                        <td><p>@alisa.dateTake.ToShortDateString().ToString()&nbsp;</p></td>
+                    }
+                    else
+                    {
+                        <td><p>&nbsp;</p></td>
+                    }
+                    @if(alisa.dateLeave != null) 
+                    { 
+                         <td><p>@alisa.dateLeave.ToShortDateString().ToString()&nbsp;</p></td>
+                    }
+                    else 
+                    {
+                        <td><p>&nbsp;</p></td>
+                    }
+                    <td><p>@alisa.Desc&nbsp;</p></td>
+                </tr>
+            }
+    </table>
+</div>

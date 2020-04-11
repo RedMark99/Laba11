@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h3>Сотрудники</h3>
+    <table>
+        <tr>
+            <th scope="col">@Html.Label("Фамилия")&nbsp;</th>
+            <th scope="col">@Html.Label("Должность")&nbsp;</th>
+            <th scope="col">@Html.Label("Зарплата")&nbsp;</th>
+            <th scope="col">@Html.Label("Дата принятия на работу")&nbsp;</th>
+        </tr>
+    
+        @foreach (var Alisa in ViewBag.Post)
+        {
+            <tr>
+                <td><p>@Alisa.Name&nbsp;</p></td>
+                <td><p>@Alisa.Post&nbsp;</p></td>
+                <td><p>@Alisa.Salary&nbsp;</p></td>
+                <td><p>@Alisa.Date.ToShortDateString().ToString()&nbsp;</p></td>
+            </tr>
+        }
+    </table>
+</div>
+
+

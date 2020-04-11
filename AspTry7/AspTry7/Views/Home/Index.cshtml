@@ -1,0 +1,160 @@
+﻿@{
+    ViewBag.Title = "Сотрудники";
+}
+    <div>
+        <h3>Сотрудники</h3>
+        <table>
+
+            <tr>
+                <th scope="col">@Html.Label("Код сотрудника")&nbsp;</th>
+                <th scope="col">@Html.Label("Имя")&nbsp;</th>
+                <th scope="col">@Html.Label("Фамилия")&nbsp;</th>
+                <th scope="col">@Html.Label("Отчество")&nbsp;</th>
+                <th scope="col">@Html.Label("Пол")&nbsp;</th>
+                <th scope="col">@Html.Label("Дата")&nbsp;</th>
+            </tr>
+
+            @foreach (var b in ViewBag.Employees)
+            {
+
+                <tr>
+                    <td><p>@b.idEmp&nbsp;</p></td>
+                    <td><p>@b.name&nbsp;</p></td>
+                    <td><p>@b.surname&nbsp;</p></td>
+                    <td><p>@b.lastname&nbsp;</p></td>
+                    <td><p>@b.gender&nbsp;</p></td>
+                    <td><p>@b.dateOfBirth.ToShortDateString().ToString()&nbsp;</p></td>
+                </tr>
+
+            }
+        </table>
+
+        <a href="/Home/About">Добавить сотрудника</a>
+
+
+
+        <h3>Должности</h3>
+        <table>
+
+            <tr>
+                <th scope="col">@Html.Label("Код должности")&nbsp;</th>
+                <th scope="col">@Html.Label("Должность")&nbsp;</th>
+                <th scope="col">@Html.Label("Зарплата")&nbsp;</th>
+            </tr>
+
+            @foreach (var b in ViewBag.Postring)
+            {
+
+                <tr>
+                    <td><p>@b.idPost&nbsp;</p></td>
+                    <td><p>@b.name&nbsp;</p></td>
+                    <td><p>@b.price&nbsp;</p></td>
+                </tr>
+
+            }
+
+        </table>
+
+        <a href="/Home/Contact">Добавить должность</a>
+
+        <h3>Занимающие должности сотрудники</h3>
+        <table>
+
+            <tr>
+                <th scope="col">@Html.Label("Код сотрудника")&nbsp;</th>
+                <th scope="col">@Html.Label("Код должности")&nbsp;</th>
+                <th scope="col">@Html.Label("Ставка")&nbsp;</th>
+                <th scope="col">@Html.Label("Статус")&nbsp;</th>
+                <th scope="col">@Html.Label("Дата принятия")&nbsp;</th>
+                <th scope="col">@Html.Label("Дата уволенения")&nbsp;</th>
+                <th scope="col">@Html.Label("Зарплата")&nbsp;</th>
+                <th scope="col">@Html.Label("Причина")&nbsp;</th>
+                <th scope="col">@Html.Label("Месяц")&nbsp;</th>
+                <th scope="col">@Html.Label("Год")&nbsp;</th>
+            </tr>
+
+            @foreach (var b in ViewBag.Regs)
+            {
+
+                <tr>
+                    <td><p>@b.idEmp</p></td>
+                    <td><p>@b.idPost</p></td>
+                    <td><p>@b.WageRate</p></td>
+                    <td><p>@b.Status</p></td>
+                    <td><p>@b.dateTake.ToShortDateString().ToString()</p></td>
+                    @if (b.dateLeave?.ToShortDateString().ToString() != null)
+                    {
+                        <td><p>@b.dateLeave.ToShortDateString().ToString()</p></td>
+                    }
+                    else
+                    {
+                        <td><p>&nbsp;</p></td>
+                    }
+
+                    <td><p>@b.Price</p></td>
+
+                    @if (b.Desc?.ToString() != null)
+                    {
+                        <td><p>@b.Desc</p></td>
+                    }
+                    else
+                    {
+                        <td><p>&nbsp;</p></td>
+                    }
+
+                    <td><p>@b.MonthOfSalary</p></td>
+
+                    <td><p>@b.YearOfSalary</p></td>
+
+                </tr>
+
+            }
+        </table>
+
+        <a href="/Home/AddReg">Занимающие должности сотрудники</a>
+
+        <a href="/Home/getMaxMinPost">Максимальная Минимальная ЗП</a>
+
+        <h4>Выбрать сотрудника по должности</h4>
+        <form method="get" action="/Home/GetEmployees">
+            @Html.DropDownList("idPost", ViewBag.Id as SelectList)
+            <input type="submit" value="Выбрать" />
+        </form>
+
+        <h4>Вывести список сотрудников, принятых в выбранный интервал времени</h4>
+        <form method="post" action="/Home/GetEmploeesDate">
+            <p>Введите дату с</p><br />
+            <input type="date" name="dateBegin" />
+            <p>Введите дату до</p><br />
+            <input type="date" name="dateEnd" />
+            <input type="submit" value="Выбрать" />
+        </form>
+
+        <h4>Выбрать все занимаемые должности сотрудника</h4>
+        <form method="post" action="/Home/GetPosts">
+            <p>Введите фамилию</p><br />
+            <input type="text" name="surname" />
+            <input type="submit" value="Выбрать" />
+        </form>
+
+        <h4>Формирование ведомости начисления заработной платы заопределенной месяц года</h4>
+        <form method="post" action="/Home/GetEmploeesSalary">
+            <p>Введите месяц</p><br />
+            <input type="text" name="month" />
+            <p>Введите год</p><br />
+            <input type="text" name="year" />
+            <input type="submit" value="Выбрать" />
+        </form>
+
+        <h4>Формирование сведений о движении сотрудника в хронологическом порядке</h4>
+        <form method="post" action="/Home/GetMark">
+            <p>Введите фамилию</p><br />
+            <input type="text" name="surname" />
+            <p>Введите имя</p><br />
+            <input type="text" name="name" />
+            <p>Введите отчество</p><br />
+            <input type="text" name="lastname" />
+            <input type="submit" value="Выбрать" />
+        </form>
+
+    </div>

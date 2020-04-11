@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h3>Сортировка по должности сотрудников</h3>
+    <table>
+        <tr>
+            <th scope="col">@Html.Label("Фамилия")&nbsp;</th>
+            <th scope="col">@Html.Label("Должность")&nbsp;</th>
+        </tr>
+        @foreach (var Alisa in ViewBag.Emploee)
+        {
+            <tr>
+                <td><p>@Alisa.Name</p></td>
+                <td><p>@Alisa.Post</p></td>
+            </tr>
+        }
+
+    </table>
+</div>
